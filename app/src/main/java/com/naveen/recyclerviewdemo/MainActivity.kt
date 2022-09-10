@@ -3,6 +3,7 @@ package com.naveen.recyclerviewdemo
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
@@ -22,6 +23,16 @@ class MainActivity : AppCompatActivity() {
         val recyclerView = findViewById<RecyclerView>(R.id.myRecyclerView)
         recyclerView.setBackgroundColor(Color.YELLOW)
         recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerView.adapter = MyRecyclerViewAdaptor(fruitsList)
+        recyclerView.adapter = MyRecyclerViewAdaptor(
+            fruitsList,
+        ) { selectedItem: Fruit ->
+            listItemClicked(selectedItem)
+        }
+    }
+    private fun listItemClicked(fruit:Fruit){
+        Toast.makeText(
+            this@MainActivity,"Supplier is : ${fruit.supplier}",
+            Toast.LENGTH_LONG
+        ).show()
     }
 }
